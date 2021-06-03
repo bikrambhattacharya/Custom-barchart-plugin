@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
   "type": "panel",
-  "name": "custom-bargraph",
+  "name": "Non Time Series Stacked Chart",
   "id": "geogo-techsolutions-custom-bargraph",
   "info": {
     "description": "",

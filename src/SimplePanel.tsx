@@ -3,7 +3,7 @@ import { PanelProps, DataFrameView } from '@grafana/data';
 import { SimpleOptions } from 'types';
 import { css } from 'emotion';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, ResponsiveContainer } from 'recharts';
-import { ColorPicker, stylesFactory } from '@grafana/ui';
+import { ColorPicker, stylesFactory, useTheme } from '@grafana/ui';
 
 interface LegendProps {
   payload?: any;
@@ -39,6 +39,8 @@ interface Props extends PanelProps<SimpleOptions> {}
 
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height, onOptionsChange }) => {
   const styles = getStyles();
+  const theme = useTheme();
+
   if (data.series.length === 0) {
     return <div className={styles.messageWrapper}>No data available</div>;
   }
@@ -63,8 +65,8 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, onO
     <ResponsiveContainer width={width} height={height}>
       <BarChart data={dataArray}>
         <CartesianGrid />
-        <XAxis dataKey={options.xaxis.value} tick={{ fontSize: 10 }} />
-        <YAxis tick={{ fontSize: 10 }} />
+        <XAxis dataKey={options.xaxis.value} tick={{ fontSize: 10, fill: theme.isDark ? '#ffffff' : '#000000' }} />
+        <YAxis tick={{ fontSize: 10, fill: theme.isDark ? '#ffffff' : '#000000' }} />
         <Tooltip />
         <Legend
           align="left"
