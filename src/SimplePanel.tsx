@@ -65,8 +65,8 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, onO
     <ResponsiveContainer width={width} height={height}>
       <BarChart data={dataArray}>
         <CartesianGrid />
-        <XAxis dataKey={options.xaxis.value} tick={{ fontSize: 10, fill: theme.isDark ? '#ffffff' : '#000000' }} />
-        <YAxis tick={{ fontSize: 10, fill: theme.isDark ? '#ffffff' : '#000000' }} />
+        <XAxis dataKey={options.xaxis.value} tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }} />
+        <YAxis tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }} />
         <Tooltip />
         <Legend
           align="left"
