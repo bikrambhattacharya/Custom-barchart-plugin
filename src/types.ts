@@ -1,9 +1,7 @@
-type SeriesSize = 'sm' | 'md' | 'lg';
+type alignment = 'horizontal' | 'vertical';
 
 export interface SimpleOptions {
-  text: string;
-  showSeriesCount: boolean;
-  seriesCountSize: SeriesSize;
+  alignment: alignment;
   layers: [];
   xaxis: {
     label: string;

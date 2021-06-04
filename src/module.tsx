@@ -7,6 +7,23 @@ import { XAxisEditor } from './XAxisEditor';
 
 export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
   return builder
+    .addRadio({
+      path: 'alignment',
+      name: 'Bar Alignment',
+      defaultValue: 'horizontal',
+      settings: {
+        options: [
+          {
+            value: 'horizontal',
+            label: 'Vertical',
+          },
+          {
+            value: 'vertical',
+            label: 'Horizontal',
+          },
+        ],
+      },
+    })
     .addCustomEditor({
       id: 'xaxis',
       path: 'xaxis',

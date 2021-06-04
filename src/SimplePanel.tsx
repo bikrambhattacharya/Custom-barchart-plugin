@@ -63,10 +63,34 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, onO
   }
   return (
     <ResponsiveContainer width={width} height={height}>
-      <BarChart data={dataArray}>
+      <BarChart
+        layout={options.alignment}
+        data={dataArray}
+        margin={
+          options.alignment === 'horizontal'
+            ? { top: 5, right: 5, bottom: 5, left: 5 }
+            : { top: 5, right: 5, left: 15, bottom: 5 }
+        }
+      >
         <CartesianGrid />
-        <XAxis dataKey={options.xaxis.value} tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }} />
-        <YAxis tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }} />
+        {options.alignment === 'horizontal'
+          ? [
+              <XAxis
+                key="xaxis"
+                dataKey={options.xaxis.value}
+                tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }}
+              />,
+              <YAxis key="yaxis" tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }} />,
+            ]
+          : [
+              <XAxis key="xaxis" type="number" tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }} />,
+              <YAxis
+                key="yaxis"
+                type="category"
+                dataKey={options.xaxis.value}
+                tick={{ fontSize: 12, fill: theme.isDark ? '#ffffff' : '#000000' }}
+              />,
+            ]}
         <Tooltip />
         <Legend
           align="left"
