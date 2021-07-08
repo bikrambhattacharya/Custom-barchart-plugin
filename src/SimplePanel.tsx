@@ -34,6 +34,15 @@ const CustomizedLegend: React.FC<LegendProps> = ({ payload, options, onOptionsCh
     </div>
   );
 };
+const CustomizedLabelList: React.FC<any> = (props) => {
+  const { x, y, width, height, fontColor, value, fontSize } = props;
+
+  return (
+    <text x={x + width / 2} y={y + height / 2} fill={fontColor} textAnchor="middle" fontSize={fontSize.value}>
+      {value}
+    </text>
+  );
+};
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -101,7 +110,11 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height, onO
           .filter((srs) => srs.name !== options.xaxis.value && srs.type !== 'string')
           .map((srs, index) => (
             <Bar key={`${srs.name}-${index}`} dataKey={`${srs.name}`} stackId="stack" fill={options.layers[index]}>
-              <LabelList dataKey={`${srs.name}`} position="middle" />
+              <LabelList
+                dataKey={`${srs.name}`}
+                position="middle"
+                content={<CustomizedLabelList fontColor={options.fontColor} fontSize={options.fontSize} />}
+              />
             </Bar>
           ))}
       </BarChart>
